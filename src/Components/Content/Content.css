@@ -1,0 +1,40 @@
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 589px);
+    padding: 0 18%;
+}
+
+.content > span {
+    font-size: 40px;
+    color: #F5F6FA;
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    .content{
+        padding: 0 14%;
+        min-height: calc(100vh - 509px);
+    }
+
+    .content > span {
+        font-size: 38px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .content{
+        padding: 0 10%;
+        min-height: calc(100vh - 443px);
+    }
+
+    .content > span {
+        font-size: 34px;
+    }
+
+
+}

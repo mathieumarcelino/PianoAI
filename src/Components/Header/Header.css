@@ -1,0 +1,50 @@
+.header{
+    display: flex;
+    align-items: center;
+    margin: 0 6%;
+    height: 82px;
+    border-bottom: 1px solid #464A53;
+}
+
+.container-title{
+    display: flex;
+    align-items: center;
+}
+
+.title{
+    font-size: 32px;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 600;
+    color: #ffffff;
+    user-select: none;
+}
+
+.multicolor{
+    background: -webkit-linear-gradient(#fc5c65, #fd9644,#fed330,#26de81,#45aaf2,#4b7bec,#a55eea);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .header{
+        height: 72px;
+        margin: 0 4%;
+    }
+
+    .title{
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header{
+        height: 62px;
+        margin: 0 2%;
+    }
+    
+    .title{
+        font-size: 20px;
+    }
+}

@@ -8,7 +8,8 @@ export const AppProvider = (props) => {
 
     const [data, setData] = useState({
         music: [],
-        note: undefined
+        note: undefined,
+        status: undefined // undefined = unload, 0 = pause, 1 = play, 2 = refresh
     });
 
     return(

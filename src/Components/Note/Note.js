@@ -1,17 +1,76 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import './Note.css';
 import { AppContext } from "../../Context/AppContext";
+
+import bSong from '../../Assets/Songs/b.mp3' ;
+import aSong from '../../Assets/Songs/a.mp3' ;
+import gSong from '../../Assets/Songs/g.mp3' ;
+import fSong from '../../Assets/Songs/f.mp3' ;
+import eSong from '../../Assets/Songs/e.mp3' ;
+import dSong from '../../Assets/Songs/d.mp3' ;
+import cSong from '../../Assets/Songs/c.mp3' ;
 
 const Note = () => {
 
     const [context, setContext] = useContext(AppContext);
     const [spans, setSpans] = useState([]);
     const [rightOffset, setRightOffset] = useState(0);
-    const intervalTime = 12; // x millisecondes, modifiez cette valeur selon vos besoins
+    const [intervalTime, setintervalTime] = useState(999999999);
+    const audioRef = useRef(null);
 
     useEffect(() => {
-        console.log(context.note);
+        if (context.status === 0) {
+            setintervalTime(999999999);
+            if(audioRef.current != null){
+                audioRef.current.pause();
+            }
+        }
+        else if (context.status === 1){
+            setintervalTime(6);
+            if(audioRef.current != null){
+                audioRef.current.play();
+            }
+        }
+    }, [context.status]);
 
+    useEffect(() => {
+        if (context.note !== undefined && context.note !== -1) {
+            if (audioRef.current) {
+                audioRef.current.pause();
+            }
+            
+            if (context.music[context.note].charAt(0) === 'B') {
+                audioRef.current = new Audio(bSong);
+                audioRef.current.play();
+            }
+            else if (context.music[context.note].charAt(0) === 'A'){
+                audioRef.current = new Audio(aSong);
+                audioRef.current.play();
+            }
+            else if (context.music[context.note].charAt(0) === 'G'){
+                audioRef.current = new Audio(gSong);
+                audioRef.current.play();
+            }
+            else if (context.music[context.note].charAt(0) === 'F'){
+                audioRef.current = new Audio(fSong);
+                audioRef.current.play();
+            }
+            else if (context.music[context.note].charAt(0) === 'E'){
+                audioRef.current = new Audio(eSong);
+                audioRef.current.play();
+            }
+            else if (context.music[context.note].charAt(0) === 'D'){
+                audioRef.current = new Audio(dSong);
+                audioRef.current.play();
+            }
+            else if (context.music[context.note].charAt(0) === 'C'){
+                audioRef.current = new Audio(cSong);
+                audioRef.current.play();
+            }
+        }
+    }, [context.note]);
+
+    useEffect(() => {
         if (context.note === undefined || context.note === context.music.length) {
             return;
         }
@@ -21,9 +80,10 @@ const Note = () => {
         }, intervalTime);
 
         return () => clearInterval(interval);
-    }, [context.note]);
+    }, [intervalTime]);
 
     useEffect(() => {
+
         if (context.note === undefined) {
             return;
         }
@@ -45,10 +105,6 @@ const Note = () => {
                 if (rightOffset - size * position < 0) {
                     return null;
                 }
-
-                // if(index == 2){
-                //     console.log(rightOffset - size * position);
-                // }
 
                 if(rightOffset - size * (position + multiplier) - 70 > 0){
                     setContext(prevContext => {

@@ -1,6 +1,6 @@
 .blackkey{
     width: 50%;
-    height: 56px;
+    height: 50px;
     background: #2F3640;
     border: solid 2px #353B48;
     border-top-right-radius: 10px;
@@ -11,23 +11,23 @@
 }
 
 .pos1{
-    top: 42px;
+    top: 40px;
 }
 
 .pos2{
-    top: 114px;
+    top: 106px;
 }
 
 .pos3{
-    top: 186px;
+    top: 172px;
 }
 
 .pos4{
-    top: 330px;
+    top: 304px;
 }
 
 .pos5{
-    top: 402px;
+    top: 370px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {

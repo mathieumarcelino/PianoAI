@@ -4,6 +4,7 @@
     margin: 0 6%;
     height: 82px;
     border-bottom: 1px solid #464A53;
+    justify-content: space-between;
 }
 
 .container-title{
@@ -16,7 +17,7 @@
     text-transform: uppercase;
     margin: 0;
     font-weight: 600;
-    color: #ffffff;
+    color: #F5F6FA;
     user-select: none;
 }
 
@@ -27,6 +28,37 @@
     -webkit-text-fill-color: transparent;
 }
 
+.container-button{
+    display: flex;
+    align-items: center;
+}
+
+.container-button-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 22px;
+}
+
+.container-button-item > svg{
+    color: #F5F6FA;
+    font-size: 22px;
+}
+
+.container-button-item:hover > svg{
+    color: #DCDDE1;
+}
+
+.rotate-icon {
+    transition: transform 500ms;
+}
+
+.rotate {
+    transform: rotate(360deg);
+}
+  
+
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .header{
         height: 72px;
@@ -35,6 +67,14 @@
 
     .title{
         font-size: 24px;
+    }
+
+    .container-button-item{
+        margin-left: 20px;
+    }
+    
+    .container-button-item > svg{
+        font-size: 18px;
     }
 }
 
@@ -46,5 +86,13 @@
     
     .title{
         font-size: 20px;
+    }
+
+    .container-button-item{
+        margin-left: 18px;
+    }
+    
+    .container-button-item > svg{
+        font-size: 16px;
     }
 }

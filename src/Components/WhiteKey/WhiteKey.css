@@ -1,6 +1,6 @@
 .whitekey{
     width: 100%;
-    height: 70px;
+    height: 64px;
     background: #F5F6FA;
     border-right: solid 2px #DCDDE1;
     border-top: solid 1px #DCDDE1;
@@ -8,13 +8,13 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    color: #DCDDE1;
 }
 
 .whitekey > span{
     font-size: 48px;
     margin-right: 40px;
     transform: rotate(270deg);
-    color: #DCDDE1;
 }
 
 .B{
@@ -29,42 +29,42 @@
 
 .active.B{
     background: #fc5c65 !important;
-    color: #eb3b5a;
+    color: #eb3b5a !important;
 }
 
 .active.A{
     background: #fd9644 !important;
-    color: #fa8231;
+    color: #fa8231 !important;
 }
 
 .active.G{
     background: #fed330 !important;
-    color: #f7b731;
+    color: #f7b731 !important;
 }
 
 .active.F{
     background: #26de81 !important;
-    color: #20bf6b;
+    color: #20bf6b !important;
 }
 
 .active.E{
     background: #45aaf2 !important;
-    color: #2d98da;
+    color: #2d98da !important;
 }
 
 .active.D{
     background: #4b7bec !important;
-    color: #3867d6;
+    color: #3867d6 !important;
 }
 
 .active.C{
     background: #a55eea !important;
-    color: #8854d0;
+    color: #8854d0 !important;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .whitekey{
-        width: 440px;
+        width: 100%;
         height: 60px;
     }
 
@@ -76,7 +76,7 @@
 
 @media screen and (max-width: 768px) {
     .whitekey{
-        width: 210px;
+        width: 100%;
         height: 52px;
     }
 

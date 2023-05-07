@@ -1,7 +1,7 @@
 .piano{
     display: flex;
     flex-direction: column;
-    height: 506px;
+    height: 464px;
     z-index: 99;
     position: fixed;
     bottom: 0;

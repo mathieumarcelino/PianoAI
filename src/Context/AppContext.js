@@ -7,7 +7,8 @@ export const AppContext = createContext();
 export const AppProvider = (props) => {
 
     const [data, setData] = useState({
-        note: 1,
+        music: [],
+        note: undefined
     });
 
     return(

@@ -1,14 +1,18 @@
 // ----- IMPORT -----
-import React from 'react';
+import React, {useContext} from 'react';
 import './Content.css';
+
+import { AppContext } from "../../Context/AppContext";
 // ------------------
 
 
-const Content = ({text}) => {
+const Content = () => {
+
+    const [context, setContext] = useContext(AppContext);
 
     return(
         <div className="content">
-            <span>{text}</span>
+            <span>C D G2 F3 E A B F2 D G A B2 C A B D4 C D G2 F3 E A B F2 D G A B2 C A B D4 C D G2 F3 E A B F2 D G A B2 C A B D4</span>
         </div>
     )
 }

@@ -4,9 +4,10 @@ import './WhiteKey.css';
 // ------------------
 
 
-const WhiteKey = ({type}) => {
+const WhiteKey = ({type, active}) => {
+
     return(
-        <div className={"whitekey " + type}>
+        <div className={'whitekey ' + type + ' ' + active}>
             <span>{type}</span>
         </div>
     )

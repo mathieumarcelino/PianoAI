@@ -32,7 +32,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .blackkey{
-        width: 210px;
+        width: 50%;
         height: 48px;
     }
 
@@ -59,7 +59,7 @@
 
 @media screen and (max-width: 768px) {
     .blackkey{
-        width: 80px;
+        width: 36%;
         height: 40px;
     }
 

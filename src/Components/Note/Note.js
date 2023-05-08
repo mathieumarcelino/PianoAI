@@ -31,10 +31,18 @@ const Note = () => {
                 audioRef.current.play();
             }
         }
+        else if (context.status === 2){
+            audioRef.current = null;
+            const interval = setInterval(() => {
+                setRightOffset(0);
+            }, 200);
+    
+            return () => clearInterval(interval);
+        }
     }, [context.status]);
 
     useEffect(() => {
-        if (context.note !== undefined && context.note !== -1) {
+        if (context.note !== undefined && context.note !== -1 && context.status !== 2) {
             if (audioRef.current) {
                 audioRef.current.pause();
             }
@@ -139,7 +147,7 @@ const Note = () => {
     }, [context.note]);
 
     return(
-        <div className="note">
+        <div className={`note ${(context.status === 2 ? 'reload' : '')}`} >
             {spans}
         </div>
     )

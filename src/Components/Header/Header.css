@@ -51,7 +51,7 @@
 }
 
 .rotate-icon {
-    transition: transform 500ms;
+    transition: transform 0.5s;
 }
 
 .rotate {

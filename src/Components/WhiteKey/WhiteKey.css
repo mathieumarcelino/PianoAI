@@ -1,7 +1,7 @@
 .whitekey{
     width: 100%;
     height: 64px;
-    background: #F5F6FA;
+    background-color: #F5F6FA;
     border-right: solid 2px #DCDDE1;
     border-top: solid 1px #DCDDE1;
     border-bottom: solid 1px #DCDDE1;
@@ -15,51 +15,56 @@
     font-size: 48px;
     margin-right: 40px;
     transform: rotate(270deg);
+    user-select: none;
 }
 
-.B{
+.whitekey.B{
     border-top-right-radius: 10px;
     border-top: solid 2px #DCDDE1;
 }
 
-.C{
+.whitekey.C{
     border-bottom-right-radius: 10px;
     border-bottom: solid 2px #DCDDE1;
 }
 
 .active.B{
-    background: #fc5c65 !important;
+    background-color: #fc5c65 !important;
     color: #eb3b5a !important;
 }
 
 .active.A{
-    background: #fd9644 !important;
+    background-color: #fd9644 !important;
     color: #fa8231 !important;
 }
 
 .active.G{
-    background: #fed330 !important;
+    background-color: #fed330 !important;
     color: #f7b731 !important;
 }
 
 .active.F{
-    background: #26de81 !important;
+    background-color: #26de81 !important;
     color: #20bf6b !important;
 }
 
 .active.E{
-    background: #45aaf2 !important;
+    background-color: #45aaf2 !important;
     color: #2d98da !important;
 }
 
 .active.D{
-    background: #4b7bec !important;
+    background-color: #4b7bec !important;
     color: #3867d6 !important;
 }
 
 .active.C{
-    background: #a55eea !important;
+    background-color: #a55eea !important;
     color: #8854d0 !important;
+}
+
+.fade-reload{
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {

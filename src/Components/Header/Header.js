@@ -10,7 +10,9 @@ const Header = () => {
     const [rotate, setRotate] = useState(false);
 
     useEffect(() => {
-        let musicStr = 'F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2 F2 F2';
+        let musicStr = 'F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2 F2 F2 F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2';
+        //F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2 F2 F2 F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2 F2 F2
+        // MAX LEN 52
         let musicArr = musicStr.split(' ');
 
         setContext({
@@ -19,6 +21,43 @@ const Header = () => {
             status: 0
         });
     }, []);
+
+    useEffect(() => {
+        if(context.status !== 2){
+            return;
+        }
+        const interval = setInterval(() => {
+            // let musicStr = 'F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2 F2 F2 F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2';
+            let inputText = '';
+            let longueur = Math.random() * (160 - 60) + 60;
+            let creativite = 50;
+            let url = `http://127.0.0.1:8280/pianoai/g/${encodeURIComponent(inputText)}/${encodeURIComponent(longueur)}/${encodeURIComponent(creativite)}`
+            fetch(url)
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        let musicArr = result.split(' ');
+                        setContext({
+                            music: musicArr,
+                            note: -1,
+                            status: 1
+                        });
+                    }
+                )
+                .catch(error => {
+                    let musicStr = 'C D E F G A B C D E F G A B C D E F G A B C D E F G A B C D E F G A B C D E F G A B';
+                    let musicArr = musicStr.split(' ');
+                    setContext({
+                        music: musicArr,
+                        note: -1,
+                        status: 1
+                    });
+                }
+            )
+        }, 200);
+
+        return () => clearInterval(interval);
+    }, [context.status]);
 
     const handlePlay = () => {
         console.log(play);
@@ -37,6 +76,9 @@ const Header = () => {
     };
 
     const handleRotate = () => {
+        setContext(prevContext => {
+            return { ...prevContext, status: 2 };
+        });
         setRotate(!rotate);
     };
 

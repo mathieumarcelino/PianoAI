@@ -1,26 +1,91 @@
-.content{
+.content {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: calc(100vh - 547px);
-    padding: 0 18%;
+    padding: 0 14%;
 }
 
-.content > span {
-    font-size: 40px;
+.content-center {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container-text-note {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 48px;
+    transition: opacity 0.2s ease;
+}
+
+.text-note {
+    user-select: none;
+    font-size: 28px;
     color: #F5F6FA;
     text-align: center;
+    transition: font-size 0.2s ease;
+    transition: color 0.2s ease;
 }
+
+.current {
+    font-size: 38px !important;
+}
+
+.passed{
+    color: #464A53 !important;
+}
+
+.current.B{
+    color: #eb3b5a !important;
+}
+
+.current.A{
+    color: #fa8231 !important;
+}
+
+.current.G{
+    color: #f7b731 !important;
+}
+
+.current.F{
+    color: #20bf6b !important;
+}
+
+.current.E{
+    color: #2d98da !important;
+}
+
+.current.D{
+    color: #3867d6 !important;
+}
+
+.current.C{
+    color: #8854d0 !important;
+}
+
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 
     .content{
-        padding: 0 14%;
+        padding: 0 6%;
         min-height: calc(100vh - 509px);
     }
 
-    .content > span {
-        font-size: 38px;
+    .container-text-note {
+        min-height: 44px;
+    }
+
+    .text-note {
+        font-size: 26px;
+    }
+
+    .current {
+        font-size: 36px !important;
     }
 
 }
@@ -28,13 +93,20 @@
 @media screen and (max-width: 768px) {
 
     .content{
-        padding: 0 10%;
+        padding: 0 2%;
         min-height: calc(100vh - 443px);
     }
 
-    .content > span {
-        font-size: 34px;
+    .container-text-note {
+        min-height: 38px;
     }
 
+    .text-note {
+        font-size: 22px;
+    }
+
+    .current {
+        font-size: 28px !important;
+    }
 
 }

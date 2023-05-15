@@ -1,6 +1,6 @@
 // ----- IMPORT -----
 import './App.css';
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 
 import Header from './Components/Header/Header';
 import Content from './Components/Content/Content';

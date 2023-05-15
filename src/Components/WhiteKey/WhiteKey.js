@@ -7,7 +7,7 @@ import './WhiteKey.css';
 
 const WhiteKey = ({type, active}) => {
 
-    const [context, setContext] = useContext(AppContext);
+    const [context] = useContext(AppContext);
 
     return(
         <div className={`whitekey ${type} ${(context.status !== 2 ? active : 'fade-reload')}`}>

@@ -9,7 +9,7 @@ import BlackKey from '../BlackKey/BlackKey';
 
 const Piano = () => {
 
-    const [context, setContext] = useContext(AppContext);
+    const [context] = useContext(AppContext);
     const [noteSelected, setNoteSelected] = useState('');
 
     useEffect(() => {

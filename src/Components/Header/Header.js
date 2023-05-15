@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import './Header.css';
 import { AppContext } from '../../Context/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,60 +8,71 @@ const Header = () => {
     const [context, setContext] = useContext(AppContext);
     const [play, setPlay] = useState(false);
     const [rotate, setRotate] = useState(false);
+    const isFirstRender = useRef(true);
+
+    function filterString(inputString) {
+        const regex = /([a-gA-G])([2-9]?)/g;
+        let result = '';
+        let match;
+    
+        while ((match = regex.exec(inputString)) !== null) {
+            if (match[2]) {
+                result += match[1] + match[2] + ' ';
+            } else {
+                result += match[1] + ' ';
+            }
+        }
+    
+        return result.trim().toUpperCase();
+    }
+    
+    function generateRandomString() {
+        const letters = 'abcdefg';
+        const randomLetter = () => letters[Math.floor(Math.random() * letters.length)];
+    
+        return `${randomLetter()} ${randomLetter()} ${randomLetter()}`;
+    }
 
     useEffect(() => {
-        let musicStr = 'F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2 F2 F2 F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2';
-        //F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2 F2 F2 F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2 F2 F2
-        // MAX LEN 52
-        let musicArr = musicStr.split(' ');
-
-        setContext({
-            music: musicArr,
-            note: -1,
-            status: 0
-        });
-    }, []);
-
-    useEffect(() => {
-        if(context.status !== 2){
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
             return;
         }
-        const interval = setInterval(() => {
-            // let musicStr = 'F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2 F2 F2 F G A F G2 F G A2 A2 G2 G2 F G A F G2 F G A2 A2';
-            let inputText = '';
-            let longueur = Math.random() * (160 - 60) + 60;
-            let creativite = 50;
-            let url = `http://127.0.0.1:8280/pianoai/g/${encodeURIComponent(inputText)}/${encodeURIComponent(longueur)}/${encodeURIComponent(creativite)}`
+        if(context.status === 2 || context.status === undefined){
+            let inputText = generateRandomString();
+            let longueur = 52;
+            let creativity = 0.5;
+            let url = `http://127.0.0.1:8280/music/g/${encodeURIComponent(inputText)}/${encodeURIComponent(longueur)}/${encodeURIComponent(creativity)}`
+            console.log(url);
             fetch(url)
-                .then(res => res.json())
+                .then(res => res.text())
                 .then(
                     (result) => {
-                        let musicArr = result.split(' ');
+                        let musicStr = filterString(result);
+                        let musicArr = musicStr.split(' ');
+                        let statusUpdated = (context.status === undefined) ? 0 : 1;
                         setContext({
-                            music: musicArr,
+                            music: musicArr.slice(0, 30),
                             note: -1,
-                            status: 1
+                            status: statusUpdated
                         });
                     }
                 )
                 .catch(error => {
-                    let musicStr = 'C D E F G A B C D E F G A B C D E F G A B C D E F G A B C D E F G A B C D E F G A B';
+                    let musicStr = 'C D E F G A B C D E F G A B C D E F G A B C D E F G A B B B';
                     let musicArr = musicStr.split(' ');
+                    let statusUpdated = (context.status === undefined) ? 0 : 1;
                     setContext({
                         music: musicArr,
                         note: -1,
-                        status: 1
+                        status: statusUpdated
                     });
                 }
             )
-        }, 200);
-
-        return () => clearInterval(interval);
+        }
     }, [context.status]);
 
     const handlePlay = () => {
-        console.log(play);
-
         setContext(prevContext => {
             let newStatus;
             if (prevContext.status === 0) {

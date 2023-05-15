@@ -8,11 +8,10 @@ import { AppContext } from '../../Context/AppContext';
 
 const Content = () => {
 
-    const [context, setContext] = useContext(AppContext);
+    const [context] = useContext(AppContext);
     const [texts, setTexts] = useState([]);
 
     useEffect(() => {
-        console.log(context.music.length);
 
         let itemPerLines = 1;
         if (context.music !== undefined){
@@ -29,8 +28,6 @@ const Content = () => {
             }
         }
         const sizePerText = (100/itemPerLines > 7) ? 100/itemPerLines : 7;
-
-        console.log(itemPerLines,sizePerText, context.status);
 
         const generatedSpans = context.music.map((note, index) => {
             return ((note, index) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useRef } from 'react';
+import React, { useEffect, useState, useContext, useRef, useCallback} from 'react';
 import './Header.css';
 import { AppContext } from '../../Context/AppContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -70,9 +70,9 @@ const Header = () => {
                 }
             )
         }
-    }, [context.status]);
+    }, [context.status, setContext]);
 
-    const handlePlay = () => {
+    const handlePlay = useCallback(() => {
         setContext(prevContext => {
             let newStatus;
             if (prevContext.status === 0) {
@@ -84,7 +84,8 @@ const Header = () => {
             }
             return { ...prevContext, status: newStatus };
         });
-    };
+    }, [setContext]);
+    
 
     const handleRotate = () => {
         setContext(prevContext => {
@@ -93,18 +94,18 @@ const Header = () => {
         setRotate(!rotate);
     };
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = useCallback((event) => {
         if (event.code === 'Space') {
             handlePlay();
         }
-    };
+    }, [handlePlay]);
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, []);
+    }, [handleKeyDown]);
 
     useEffect(() => {
         if(!rotate){

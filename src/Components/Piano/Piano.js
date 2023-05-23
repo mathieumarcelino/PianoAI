@@ -19,7 +19,7 @@ const Piano = () => {
         else {
             setNoteSelected('');
         }
-    }, [context.note]);
+    }, [context.note, context.music]);
 
     return(
         <div className='piano'>

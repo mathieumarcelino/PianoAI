@@ -76,7 +76,7 @@ const Note = () => {
                 audioRef.current.play();
             }
         }
-    }, [context.note]);
+    }, [context.note, context.music, context.status]);
 
     useEffect(() => {
         if (context.note === undefined || context.note === context.music.length) {
@@ -88,7 +88,7 @@ const Note = () => {
         }, intervalTime);
 
         return () => clearInterval(interval);
-    }, [intervalTime]);
+    }, [intervalTime, context.music.length, context.note]);
 
     useEffect(() => {
 
@@ -135,7 +135,7 @@ const Note = () => {
 
         setSpans(generatedSpans);
     
-    }, [context.music, context.note, rightOffset]);
+    }, [context.music, context.note, rightOffset, setContext]);
 
     useEffect(() => {
         if (context.note === undefined) {
@@ -144,7 +144,7 @@ const Note = () => {
                 return { ...prevContext, note: -1 };
             });
         }
-    }, [context.note]);
+    }, [context.note, setContext]);
 
     return(
         <div className={`note ${(context.status === 2 ? 'reload' : '')}`} >

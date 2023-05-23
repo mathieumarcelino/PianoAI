@@ -42,7 +42,7 @@ const Header = () => {
             let inputText = generateRandomString();
             let longueur = 52;
             let creativity = 0.5;
-            let url = `http://127.0.0.1:8280/music/g/${encodeURIComponent(inputText)}/${encodeURIComponent(longueur)}/${encodeURIComponent(creativity)}`
+            let url = `https://api.piano.mathi3u.com/music/g/${encodeURIComponent(inputText)}/${encodeURIComponent(longueur)}/${encodeURIComponent(creativity)}`
             console.log(url);
             fetch(url)
                 .then(res => res.text())

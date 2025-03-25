@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+   piano-app:
+     container_name: piano-app
+     restart: always
+     build:
+       context: .
+       dockerfile: Dockerfile
+     ports:
+       - 3002:80
+
+     networks:
+       - piano-app_network
+
+networks:
+  piano-app_network:
+    driver: bridge

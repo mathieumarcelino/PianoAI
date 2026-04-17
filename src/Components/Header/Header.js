@@ -38,7 +38,7 @@ const Header = () => {
             isFirstRender.current = false;
             return;
         }
-        if(context.status === 2 || context.status === undefined){
+        if(context.status === 2){
             let inputText = generateRandomString();
             let longueur = 52;
             let creativity = 0.5;
@@ -50,22 +50,20 @@ const Header = () => {
                     (result) => {
                         let musicStr = filterString(result);
                         let musicArr = musicStr.split(' ');
-                        let statusUpdated = (context.status === undefined) ? 0 : 1;
                         setContext({
                             music: musicArr.slice(0, 30),
                             note: -1,
-                            status: statusUpdated
+                            status: 1
                         });
                     }
                 )
                 .catch(error => {
                     let musicStr = 'C D E F G A B C D E F G A B C D E F G A B C D E F G A B B B';
                     let musicArr = musicStr.split(' ');
-                    let statusUpdated = (context.status === undefined) ? 0 : 1;
                     setContext({
                         music: musicArr,
                         note: -1,
-                        status: statusUpdated
+                        status: 1
                     });
                 }
             )
